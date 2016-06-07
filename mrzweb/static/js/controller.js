@@ -1,5 +1,7 @@
-﻿function IndexCtrl($scope, $http) {
+﻿// angular js controller for Index view
+function IndexCtrl($scope, $http) {
 
+    // a model to bind to the form
     $scope.model = {
         PassportNum: '',
         Nationality: '',
@@ -19,6 +21,7 @@
 
     $scope.result = {};
 
+    // function submit the request to the /Home/Validate action
     $scope.formsubmit = function () {
         var x = $scope.model;
         x.DOB.year = $scope.paddzero(x.DOB.year);
@@ -48,6 +51,7 @@
         });
     }
 
+    // function to add padding to a given variable
     $scope.paddzero = function (a) {
         if (!$scope.isint(a))
             return '' + a;
@@ -57,13 +61,15 @@
         return s;
     }
 
+    // function to check whether a given variable is integer
     $scope.isint = function (value) {
         return !isNaN(value) &&
                !isNaN(parseInt(value, 10));
     }
 
+    // function to show the status of the validation result in terms of Pass/Fail
     $scope.status = function (a) {
-        var s = a == true ? 'pass' : 'fail';
+        var s = a == true ? 'Pass' : 'Fail';
         return s;
     }
 }

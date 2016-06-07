@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RestSharp;
-using Newtonsoft.Json;
 using Validator;
 
 namespace mrzweb.Controllers
@@ -19,6 +18,14 @@ namespace mrzweb.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Action to validate MRZ data, which makes request to the web api to perform validation
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns>JSON result in dictionary format, 
+        /// eg. if success { "success": 1, "result": MRZ instance }
+        /// if error { "error": 1, "message": error message }
+        /// </returns>
         [HttpPost]
         public JsonResult Validate(MRZForm x)
         {
