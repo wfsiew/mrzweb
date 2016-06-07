@@ -14,7 +14,7 @@
             day: ''
         },
         Sex: '',
-        Line: ''
+        Line: null
     };
 
     $scope.result = {};
