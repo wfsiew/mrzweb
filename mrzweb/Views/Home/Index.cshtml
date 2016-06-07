@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "MZR Validate Example";
+}
+
+<div ng-controller="IndexCtrl">
+    <div class="jumbotron center-div">
+        <div class="container text-center">
+            <div class="row">
+                <form class="form-horizontal" role="form" novalidate ng-submit="formsubmit()">
+                    <div class="form-group form-group-sm">
+                        <label class="col-md-4 control-label text-right">Passport No.</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" ng-model="model.PassportNum" />
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="col-md-4 control-label text-right">Nationality</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" ng-model="model.Nationality" />
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="col-md-4 control-label text-right">Date of Birth</label>
+                        <div class="col-md-1">
+                            <input type="text" class="form-control" ng-model="model.DOB.year" />
+                        </div>
+                        <div class="col-md-1">
+                            <input type="text" class="form-control" ng-model="model.DOB.month" />
+                        </div>
+                        <div class="col-md-1">
+                            <input type="text" class="form-control" ng-model="model.DOB.day" />
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="col-md-4 control-label text-right">Gender</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" ng-model="model.Sex" />
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="col-md-4 control-label text-right">Date of Expiry</label>
+                        <div class="col-md-1">
+                            <input type="text" class="form-control" ng-model="model.Exp.year" />
+                        </div>
+                        <div class="col-md-1">
+                            <input type="text" class="form-control" ng-model="model.Exp.month" />
+                        </div>
+                        <div class="col-md-1">
+                            <input type="text" class="form-control" ng-model="model.Exp.day" />
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="col-md-2 text-right">MRZ (Line 2)</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" readonly ng-model="model.Line" />
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary">Validate</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" ng-show="model.Line != null">
+        <div class="row">
+            <h4>Results</h4>
+            <div class="table-responsive col-md-6 col-md-offset-3">
+                <table class="table table-striped table-hover table-condensed table-bordered">
+                    <thead>
+                        <tr class="well">
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Passport Number Check Digit</td>
+                            <td>{{status(result.IsValidCheckDigit1)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth Check digit</td>
+                            <td>{{status(result.IsValidCheckDigit2)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Passport Expiration Date check digit</td>
+                            <td>{{status(result.IsValidCheckDigit3)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Personal number check digit</td>
+                            <td>{{status(result.IsValidCheckDigit4)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Final check digit</td>
+                            <td>{{status(result.IsValidFinalDigit)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Gender cross check</td>
+                            <td>{{status(result.IsValidSex)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth cross check</td>
+                            <td>{{status(result.IsValidDOB)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Expiration data cross check</td>
+                            <td>{{status(result.IsValidPassportExpDate)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Nationality cross check</td>
+                            <td>{{status(result.IsValidNationality)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Passport No. cross check</td>
+                            <td>{{status(result.IsValidPassportNum)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/static/js/controller.js"></script>
