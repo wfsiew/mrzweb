@@ -1,20 +1,20 @@
 ﻿function IndexCtrl($scope, $http) {
 
     $scope.model = {
-        PassportNum: null,
-        Nationality: null,
+        PassportNum: '',
+        Nationality: '',
         DOB: {
-            year: null,
-            month: null,
-            day: null
+            year: '',
+            month: '',
+            day: ''
         },
         Exp: {
-            year: null,
-            month: null,
-            day: null
+            year: '',
+            month: '',
+            day: ''
         },
-        Sex: null,
-        Line: null
+        Sex: '',
+        Line: ''
     };
 
     $scope.result = {};
