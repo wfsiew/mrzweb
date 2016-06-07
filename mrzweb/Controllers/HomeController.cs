@@ -11,7 +11,7 @@ namespace mrzweb.Controllers
 {
     public class HomeController : Controller
     {
-        private const bool DEBUG = true;
+        private const bool DEBUG = false;
 
         // GET: Default
         public ActionResult Index()
@@ -26,7 +26,8 @@ namespace mrzweb.Controllers
 
             try
             {
-                var client = new RestClient("http://localhost:5000");
+                string url = DEBUG ? "http://localhost:5000" : "https://mrzapi.apphb.com";
+                var client = new RestClient(url);
                 var request = new RestRequest("api/mrz/validate", Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddJsonBody(x);
